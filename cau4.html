@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Website</title>
+    <style>
+        /* Reset và các thiết lập cơ bản */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F3F6F0;
+            color: #222222;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #2A393F;
+            color: #FFFFFF;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        nav {
+            background-color: #434242;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            padding: 10px 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #F3F6F0;
+        }
+
+        /* Khối quảng cáo */
+        .feature {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to right, #434242, #222222);
+            color: #F3F6F0;
+            border: 2px solid #222222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: #F3F6F0;
+            color: #2A393F;
+            border-color: #434242;
+            font-style: italic;
+        }
+
+        /* Danh sách ô tô */
+        #car-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .item {
+            width: calc(50% - 20px);
+            background-color: #2A393F;
+            color: #FFFFFF;
+            border: 1px solid #434242;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .item:hover {
+            background-color: #434242;
+        }
+
+        @media (max-width: 768px) {
+            .item {
+                width: 100%;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background-color: #434242;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Car Rental</h1>
+        <p>Your trusted partner in car rentals</p>
+        <p>Slogan: "Drive the Change"</p>
+    </header>
+
+    <!-- Menu -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Cars</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Khối quảng cáo -->
+    <div class="feature">
+        <h2>Special Offer: Toyota Corolla - Only $50/day!</h2>
+    </div>
+
+    <!-- Danh sách ô tô -->
+    <h1 style="text-align: center; margin: 20px 0;">Available Cars for Rent</h1>
+    <div id="car-list"></div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Họ tên: Tống Khánh Linh</p>
+        <p>Lớp: CNTT1165(124)_01</p>
+        <p>Mã sinh viên: 11223759</p>
+    </footer>
+
+    <script>
+        // Chuỗi JSON chứa thông tin về 5 ô tô
+        const carsJSON = `[
+            {"type": "Toyota Corolla", "seats": 5, "price": 50, "img": "img/images.jpg"},
+            {"type": "Honda Civic", "seats": 5, "price": 55, "img": "img/honda.jpg"},
+            {"type": "Ford Explorer", "seats": 7, "price": 75, "img": "img/ford.jpg"},
+            {"type": "BMW 3 Series", "seats": 5, "price": 100, "img": "img/bmw.jpg"},
+            {"type": "Mercedes-Benz C-Class", "seats": 5, "price": 120, "img": "img/c300.jpg"}
+        ]`;
+
+        // Chuyển JSON thành mảng đối tượng
+        const cars = JSON.parse(carsJSON);
+
+        // Lấy phần tử HTML để hiển thị danh sách xe
+        const carList = document.getElementById('car-list');
+
+        // Duyệt qua mảng và tạo HTML cho từng đối tượng
+        cars.forEach(car => {
+            // Tạo thẻ <div> chứa thông tin xe
+            const carDiv = document.createElement('div');
+            carDiv.classList.add('item');
+
+            // Nội dung thông tin xe
+            carDiv.innerHTML = `
+                <img src="${car.img}" style="width: 100%; height: auto; border-radius: 8px;">
+                <h2>${car.type}</h2>
+                <p><strong>Seats:</strong> ${car.seats}</p>
+                <p><strong>Price per day:</strong> $${car.price}</p>
+                
+            `;
+
+            // Thêm <div> vào danh sách
+            carList.appendChild(carDiv);
+        });
+    </script>
+</body>
+
+</html>

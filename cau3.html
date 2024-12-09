@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F3F6F0;
+            color: #222222;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .car {
+            border: 1px solid #2A393F;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .car h2 {
+            margin: 0;
+            color: #2A393F;
+        }
+
+        .car p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Available Cars for Rent</h1>
+    <div id="car-list"></div>
+
+    <script>
+        // Chuỗi JSON chứa thông tin về 5 ô tô
+        const carsJSON = `[
+            {"type": "Toyota Corolla", "seats": 5, "price": 50},
+            {"type": "Honda Civic", "seats": 5, "price": 55},
+            {"type": "Ford Explorer", "seats": 7, "price": 75},
+            {"type": "BMW 3 Series", "seats": 5, "price": 100},
+            {"type": "Mercedes-Benz C-Class", "seats": 5, "price": 120}
+        ]`;
+
+        // Chuyển JSON thành mảng đối tượng
+        const cars = JSON.parse(carsJSON);
+
+        // Lấy phần tử HTML để hiển thị danh sách xe
+        const carList = document.getElementById('car-list');
+
+        // Duyệt qua mảng và tạo HTML cho từng đối tượng
+        cars.forEach(car => {
+            // Tạo thẻ <div> chứa thông tin xe
+            const carDiv = document.createElement('div');
+            carDiv.classList.add('car');
+
+            // Nội dung thông tin xe
+            carDiv.innerHTML = `
+                <h2>${car.type}</h2>
+                <p><strong>Seats:</strong> ${car.seats}</p>
+                <p><strong>Price per day:</strong> $${car.price}</p>
+            `;
+
+            // Thêm <div> vào danh sách
+            carList.appendChild(carDiv);
+        });
+    </script>
+</body>
+
+</html>
